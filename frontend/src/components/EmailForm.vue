@@ -175,7 +175,9 @@ async function sendEmail() {
       requestBody.attachments = attachments.value;
     }
 
-    const response = await fetch('/api/send', {
+    // 获取 API 地址（支持环境变量配置）
+    const API_BASE_URL = import.meta.env.VITE_API_URL || '';
+    const response = await fetch(`${API_BASE_URL}/api/send`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
